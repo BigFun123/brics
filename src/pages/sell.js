@@ -1,0 +1,102 @@
+import { Box, Button, CssBaseline, Grid, Stack, Typography } from "@mui/material";
+import { Catalog } from "../components/catalog/Catalog";
+import AppTheme from "../components/shared-theme/AppTheme";
+import { ItemCard } from "../components/itemcard/ItemCard";
+import { useContext, useEffect, useState } from "react";
+import { DoGetItem, DoGetItems, DoListItem } from "../controllers/user";
+import { alpha } from '@mui/material/styles';
+import { APPContext } from "../lib/context";
+
+
+export function Sell(props) {
+    const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [titleError, setTitleError] = useState(null);
+    const [priceError, setPriceError] = useState(null);
+    const { data } = useContext(APPContext);
+    const [localData, setLocalData] = useState(null);
+    const [title, setTitle] = useState("New Listing");
+
+    useEffect(() => {
+        // if we're editing a listing, fetch the deets
+        if (data) {
+            setTitle("Edit Listing");
+            DoGetItem(data.id)
+                .then((data) => {
+                    setLocalData(data);
+                }).catch((error) => {
+                    console.error('Error:', error);
+                    setError(error);
+                });
+        }
+    }, []);
+
+    /**
+     * Called by the item card when the user clicks the button
+     * @param {*} data 
+     */
+    function onDoListing(data) {
+        setError(null);
+        setMessage(null);
+        const formData = new FormData();
+        formData.append("file", data.file);
+        formData.append("title", data.title);
+        formData.append("description", data.description);
+        formData.append("price", data.price);
+        //formData.append("extra", data.extra);
+        formData.append("quantity", data.quantity);
+        formData.append("postID", data.postID);
+
+        DoListItem(formData)
+            .then((data) => {
+                console.log(data);
+                if (data.success)
+                    setMessage("Sucess. " + data?.message);
+                else {
+                    setError("Failed: " + data?.message);
+                    data.target === "title" ? setTitleError(data?.message) : setTitleError(null);
+                    data.target === "price" ? setPriceError(data?.message) : setPriceError(null);
+                }
+            }).catch((error) => {
+                console.error('Error:', error);
+                setError(error);
+            });
+    }
+
+    return (
+        <AppTheme {...props} >
+            <CssBaseline enableColorScheme />
+            <Box
+                component="main"
+                sx={(theme) => ({
+                    
+                    backgroundColor: theme.vars
+                        ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
+                        : alpha(theme.palette.background.default, 1),
+                    overflow: 'auto',
+                    padding: 1,                    
+                    display: { xs: 'block', sm: 'block', lg: 'flex' },
+                    margin: 'auto',
+                    
+                })}
+            >
+                <Stack spacing={0} direction={{ xs: 'column', sm: 'column', lg: 'column' }}>
+                    {error && <Typography fontSize={22} sx={(theme) => ({
+                        backgroundColor: theme.palette.error.main,
+                        color: theme.palette.error.contrastText
+                    })}>{error}</Typography>}
+                    {message && <Typography fontSize={22} sx={(theme) => ({
+                        backgroundColor: theme.palette.success.main,
+                        color: theme.palette.success.contrastText,
+                        padding: 1,
+                    })}>{message}</Typography>}
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={12}>
+                            <ItemCard title={title} onClick={onDoListing} data={localData} titleError={titleError} priceError={priceError} />
+                        </Grid>
+                    </Grid>
+                </Stack>
+            </Box>
+        </AppTheme>
+    )
+}

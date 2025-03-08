@@ -1,24 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import Button from '@mui/material/Button';
+import SignIn from './components/sign-in/SignIn';
+import { APPContext, APPContextProvider, useAppContext } from './lib/context';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useContext, useState } from 'react';
+import SignUp from './components/sign-up/SignUp';
+import { MainPage } from './pages/main';
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <APPContextProvider>
+      <MainPage></MainPage>
+    </APPContextProvider>
   );
 }
 
