@@ -1,7 +1,7 @@
-import { Box, Button, Card, CircularProgress, Stack, TextField, Typography } from "@mui/material";
+import { Button, Card, Stack, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useEffect, useState } from "react";
-import { DoUpload, getImageURL } from "../../controllers/user";
+import { getImageURL } from "../../controllers/user";
 
 const resizeImage = (file, maxWidth, maxHeight) => {
     return new Promise((resolve, reject) => {
@@ -64,18 +64,18 @@ export function FileUpload({ doSetFile, existing }) {
     return (
         <Card sx={{ height: '100%', width: '100%', flexGrow: 1 }}>
             <Stack direction="row" spacing={2}>
-                
+
                 <Button
                     variant=""
                     component="label"
-                    startIcon={<CloudUploadIcon />}                    
+                    startIcon={<CloudUploadIcon />}
                     sx={{ flexGrow: 1, height: '100%', minHeight: 128, justifyContent: 'center', alignItems: 'center' }}
                 >
                     {image && <img src={image} width={128} />}
                     {!image && <Typography>Select File</Typography>}
                     <input type="file" hidden onChange={handleFileChange} />
                 </Button>
-            </Stack>            
+            </Stack>
         </Card>
 
     )

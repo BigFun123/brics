@@ -1,7 +1,4 @@
-import { Box, Button, Grid, Stack } from "@mui/material";
-import CustomizedDataGrid from "../dashboard/components/CustomizedDataGrid";
-import CustomizedTreeView from "../dashboard/components/CustomizedTreeView";
-import ChartUserByCountry from "../dashboard/components/ChartUserByCountry";
+import { Box, Button, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { getImageURL } from "../../controllers/user";
 

@@ -1,14 +1,11 @@
 import { useState } from "react";
 import StatCardWithRating from "./StatCardWithRating";
-import { Box, Button, Card, CardActions, CardContent, Link, Stack, TextField, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Link, Stack, TextField, Typography } from "@mui/material";
 import { DoGetUser } from "../../controllers/user";
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
-
-
 export function ChoosableCard({ data, onDataLoaded }) {
-    const [entering, setEntering] = useState(true);
-    const [userData, setUserData] = useState(data);
+    const [entering, setEntering] = useState(true);    
     const [busy, setBusy] = useState(false);
     let userid = 0;
 

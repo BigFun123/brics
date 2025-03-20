@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { APPContext } from "./context";
 
-const utilityPages = ["signin", "signup", , "dashboard"];
+const utilityPages = ["signin", "signup", "signout", "dashboard"];
 
 /**
  * Custom hook to set the app page

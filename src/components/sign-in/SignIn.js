@@ -15,7 +15,6 @@ import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../shared-theme/AppTheme';
-import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { GoogleIcon, FacebookIcon } from './components/CustomIcons';
 import { APPContext } from '../../lib/context';
 import { AppIcon } from '../AppIcon';
@@ -73,7 +72,7 @@ export default function SignIn(props) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const { setIsSignedIn, setMe } = React.useContext(APPContext);
-  const { appState, setAppState } = usePage();
+  const { setAppState } = usePage();
 
   const handleSignUp = () => {
     console.log('handleSignUp');

@@ -1,13 +1,9 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { useContext } from "react";
 import SignIn from "../components/sign-in/SignIn";
 import SignUp from "../components/sign-up/SignUp";
 import { APPContext } from "../lib/context";
-import MenuIcon from '@mui/icons-material/Menu';
 import { Transfer } from "./transfer";
-import ButtonAppBar from "../components/topbar/TopBar";
 import TopBar from "../components/topbar/TopBar";
-import Dashboard from "../components/dashboard/Dashboard";
 import { usePage } from "../lib/usePage";
 
 import { Buy } from "./buy";
@@ -19,8 +15,7 @@ import { Admin } from "./admin";
 
 export function MainPage() {
     const context = useContext(APPContext);
-    const { isSignedIn } = useContext(APPContext);
-    const { appState, setAppState, isUtilityPage } = usePage();
+    const { isUtilityPage } = usePage();
 
     return (
         <div>

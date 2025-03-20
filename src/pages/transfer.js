@@ -1,21 +1,12 @@
-import { AppBar, Box, Button, CssBaseline, Grid, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, Button, CssBaseline, Grid, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import SignIn from "../components/sign-in/SignIn";
-import SignUp from "../components/sign-up/SignUp";
 import { APPContext } from "../lib/context";
-import MenuIcon from '@mui/icons-material/Menu';
-import Dashboard from "../components/dashboard/Dashboard";
-import Checkout from "../components/checkout/Checkout";
-import { AccountCard } from "../components/accountCard/AccountCard";
 import AppTheme from "../components/shared-theme/AppTheme";
-import AppNavbar from "../components/dashboard/components/AppNavbar";
 import { alpha } from '@mui/material/styles';
-import TopBar from "../components/topbar/TopBar";
 import StatCardWithRating from "../components/accountCard/StatCardWithRating";
 import AmountCard from "../components/amountcard/AmountCard";
 import { DoGetUser, DoTransfer } from "../controllers/user";
 import { ChoosableCard } from "../components/accountCard/ChoosableCard";
-
 
 const LucyData = {
     title: 'Tap To Select Receiver',
@@ -27,15 +18,13 @@ const LucyData = {
     ],
 }
 
-export function Transfer(props) {
-    const context = useContext(APPContext);
+export function Transfer(props) {    
     const [myData, setMyData] = useState(null);
     const [theirData, setTheirData] = useState(LucyData);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState("loading...");
     const [busy, setBusy] = useState(false);
-
  
 
     useEffect(() => {
@@ -65,10 +54,6 @@ export function Transfer(props) {
             });
     }
 
-    function handleBack() {
-        context.setAppState("main");
-    }
-
     function onDataLoaded(data) {
         setTheirData(data);
         setError(null);
@@ -79,7 +64,7 @@ export function Transfer(props) {
         setError(null);
         setMessage(null);
         setBusy(true);
-        const result = DoTransfer(amt, myData.userid, theirData.userid)
+        DoTransfer(amt, myData.userid, theirData.userid)
             .then(result => {
                 if (result?.success) {
                     console.log('Transfer success');

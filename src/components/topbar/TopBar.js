@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import App from '../../App';
-import { AppIcon } from '../AppIcon';
 import { APPContext } from '../../lib/context';
 import AppTheme from '../shared-theme/AppTheme';
 import { Avatar, CssBaseline, Link, Stack, Tab, Tabs } from '@mui/material';
@@ -23,23 +21,12 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 export default function TopBar() {
 
   const { isSignedIn } = React.useContext(APPContext);
-  const { appState, setAppState } = usePage();
+  const { setAppState } = usePage();
   const { me } = React.useContext(APPContext);
-  const context = React.useContext(APPContext);
   const { isUtilityPage } = usePage();
 
   function handleAvatar() {
     setAppState("profile");
-  }
-
-
-
-  function handleTransfer() {
-    setAppState("transfer");
-  }
-
-  function handleDashboard() {
-    setAppState("dashboard");
   }
 
   function handleAdmin() {
@@ -48,10 +35,6 @@ export default function TopBar() {
 
   function handleMain() {
     setAppState("main");
-  }
-
-  function handleLogout() {
-    setAppState("signin");
   }
 
   function responsive(text) {
@@ -100,7 +83,7 @@ export default function TopBar() {
               {!isSignedIn && <Button color="inherit">Sign Up</Button>}
               {!isSignedIn && <Button color="inherit">Sign In</Button>} */}
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                { me && me.admin && <Avatar variant="round" onClick={handleAdmin}><DashboardIcon></DashboardIcon></Avatar>}
+                {me && me.admin && <Avatar variant="round" onClick={handleAdmin}><DashboardIcon></DashboardIcon></Avatar>}
                 {me && <Avatar variant="round" onClick={handleAvatar}><PersonIcon></PersonIcon></Avatar>}
               </Box>
             </Stack>

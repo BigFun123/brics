@@ -1,9 +1,7 @@
-import { Button, Card, CardActions, CardContent, Grid, Grid2, Rating, Stack, TextField, Typography } from "@mui/material";
+import { Button, Card, CardContent, Grid2, Stack, TextField, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { APPContext } from "../../lib/context";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { FileUpload } from "../fileupload/fileupload";
-import { getImageURL } from "../../controllers/user";
 
 /**
  * Describes an item
