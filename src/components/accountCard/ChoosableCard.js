@@ -14,11 +14,11 @@ export function ChoosableCard({ data, onDataLoaded }) {
     }
 
     function onFind() {
-        setUserData(null);
+        
         setBusy(true);
         DoGetUser(userid)
             .then((data) => {
-                setUserData(data);
+        
                 onDataLoaded(data);
                 console.log(data);
 
