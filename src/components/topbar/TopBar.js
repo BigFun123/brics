@@ -42,6 +42,10 @@ export default function TopBar() {
     setAppState("dashboard");
   }
 
+  function handleAdmin() {
+    setAppState("admin");
+  }
+
   function handleMain() {
     setAppState("main");
   }
@@ -96,6 +100,7 @@ export default function TopBar() {
               {!isSignedIn && <Button color="inherit">Sign Up</Button>}
               {!isSignedIn && <Button color="inherit">Sign In</Button>} */}
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                { me && me.admin && <Avatar variant="round" onClick={handleAdmin}><DashboardIcon></DashboardIcon></Avatar>}
                 {me && <Avatar variant="round" onClick={handleAvatar}><PersonIcon></PersonIcon></Avatar>}
               </Box>
             </Stack>

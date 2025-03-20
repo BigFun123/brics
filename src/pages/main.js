@@ -14,8 +14,8 @@ import { Buy } from "./buy";
 import { Info } from "./info";
 import { Sell } from "./sell";
 import { Dash } from "./dash";
-
-
+import { Profile } from "./profile";
+import { Admin } from "./admin";
 
 export function MainPage() {
     const context = useContext(APPContext);
@@ -33,6 +33,8 @@ export function MainPage() {
             {context.appState === "sell" && <Sell></Sell>}
             {context.appState === "dashboard" && <Dash></Dash>}
             {context.appState === "main" && <Info></Info>}
+            {context.appState === "profile" && <Profile></Profile>}
+            {context.appState === "admin" && <Admin></Admin>}
         </div>
     )
 }

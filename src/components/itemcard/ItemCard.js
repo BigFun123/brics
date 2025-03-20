@@ -13,6 +13,7 @@ import { getImageURL } from "../../controllers/user";
 export function ItemCard({ title, onClick, data, priceError, titleError }) {
     const { Currency, CurrencySymbol, LocalCurrencySymbol } = useContext(APPContext);
     const [file, setFile] = useState(null);
+    const [editMode, setEditMode] = useState(false);
 
     let postID = data?._id;
 
@@ -23,6 +24,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
             document.getElementById("description").value = data.description;
             //document.getElementById("quantity").value = data.quantity;
             document.getElementById("price").value = data.price;
+            setEditMode(true);
             //document.getElementById("extra").value = data.extra
         }
 
@@ -70,6 +72,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
                             </Grid2>
 
                         </Grid2>
+                        <Button variant="contained" color="primary" sx={{maxWidth:"200px"}} onClick={doOnClick}>{editMode ? "Update" : "Add"}</Button>
 
 
                         {/* <Stack direction={"row"} sx={{ gap: 2, justifyContent: 'start', alignContent: 'center', alignItems: 'center' }}>
@@ -80,7 +83,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
                             <Typography>{LocalCurrencySymbol}</Typography>
                             <TextField id="extra" placeholder="extra cost (local currency)" required></TextField>
                         </Stack> */}
-                        <Button variant="contained" color="primary" onClick={doOnClick}>List it</Button>
+                        
                     </Stack>
                 </CardContent>
             </Stack>

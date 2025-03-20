@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { DoGetItem, DoGetItems, DoListItem } from "../controllers/user";
 import { alpha } from '@mui/material/styles';
 import { APPContext } from "../lib/context";
+import { Loading } from "../components/loading/Loading";
 
 
 export function Sell(props) {
@@ -16,10 +17,12 @@ export function Sell(props) {
     const { data } = useContext(APPContext);
     const [localData, setLocalData] = useState(null);
     const [title, setTitle] = useState("New Listing");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // if we're editing a listing, fetch the deets
         if (data) {
+            setLoading(true);
             setTitle("Edit Listing");
             DoGetItem(data.id)
                 .then((data) => {
@@ -27,6 +30,8 @@ export function Sell(props) {
                 }).catch((error) => {
                     console.error('Error:', error);
                     setError(error);
+                }).finally(() => {
+                    setLoading(false);
                 });
         }
     }, []);
@@ -66,37 +71,34 @@ export function Sell(props) {
     return (
         <AppTheme {...props} >
             <CssBaseline enableColorScheme />
-            <Box
+            <Stack
                 component="main"
                 sx={(theme) => ({
-                    
                     backgroundColor: theme.vars
                         ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
                         : alpha(theme.palette.background.default, 1),
                     overflow: 'auto',
-                    padding: 1,                    
+                    padding: 1,
                     display: { xs: 'block', sm: 'block', lg: 'flex' },
                     margin: 'auto',
-                    
+                    maxWidth: '800px',
+
                 })}
             >
-                <Stack spacing={0} direction={{ xs: 'column', sm: 'column', lg: 'column' }}>
-                    {error && <Typography fontSize={22} sx={(theme) => ({
-                        backgroundColor: theme.palette.error.main,
-                        color: theme.palette.error.contrastText
-                    })}>{error}</Typography>}
-                    {message && <Typography fontSize={22} sx={(theme) => ({
-                        backgroundColor: theme.palette.success.main,
-                        color: theme.palette.success.contrastText,
-                        padding: 1,
-                    })}>{message}</Typography>}
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={12}>
-                            <ItemCard title={title} onClick={onDoListing} data={localData} titleError={titleError} priceError={priceError} />
-                        </Grid>
-                    </Grid>
-                </Stack>
-            </Box>
+
+                <ItemCard title={title} onClick={onDoListing} data={localData} titleError={titleError} priceError={priceError} />
+                {error && <Typography fontSize={22} sx={(theme) => ({
+                    backgroundColor: theme.palette.error.main,
+                    color: theme.palette.error.contrastText
+                })}>{error}</Typography>}
+                {message && <Typography fontSize={22} sx={(theme) => ({
+                    backgroundColor: theme.palette.success.main,
+                    color: theme.palette.success.contrastText,
+                    padding: 1,
+                })}>{message}</Typography>}
+                {loading && <Loading></Loading>}
+
+            </Stack>
         </AppTheme>
     )
 }

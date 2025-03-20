@@ -1,7 +1,6 @@
-const umURL = 'http://localhost:8080/brics/';
-const uploadsURL = 'http://localhost:8080/';
-const key = "bricks😏";
-const reqURL = umURL + key + "/";
+import {token} from './config';
+import { reqURL } from './config';
+import { uploadsURL } from './config';
 
 export function getImageURL(filename) {
     return uploadsURL +  filename;
