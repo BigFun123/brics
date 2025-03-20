@@ -1,6 +1,5 @@
-import { Box, Button, CssBaseline, Grid, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
-import { APPContext } from "../lib/context";
+import { Box, CssBaseline, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import AppTheme from "../components/shared-theme/AppTheme";
 import { alpha } from '@mui/material/styles';
 import StatCardWithRating from "../components/accountCard/StatCardWithRating";

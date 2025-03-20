@@ -100,7 +100,7 @@ export default function SignIn(props) {
       password: data.get('password'),
     });
 
-    const result = DoSignIn(data.get('email'), data.get('password'), data.get('remember'))
+    DoSignIn(data.get('email'), data.get('password'), data.get('remember'))
       .then(result => {
         console.log('result:', result);
         if (result?.success) {

@@ -1,4 +1,3 @@
-import {token} from './config';
 import { reqURL } from './config';
 import { uploadsURL } from './config';
 

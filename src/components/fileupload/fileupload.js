@@ -39,8 +39,7 @@ const resizeImage = (file, maxWidth, maxHeight) => {
 };
 
 export function FileUpload({ doSetFile, existing }) {
-    const [file, setFile] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [setFile] = useState(null);    
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -71,7 +70,7 @@ export function FileUpload({ doSetFile, existing }) {
                     startIcon={<CloudUploadIcon />}
                     sx={{ flexGrow: 1, height: '100%', minHeight: 128, justifyContent: 'center', alignItems: 'center' }}
                 >
-                    {image && <img src={image} width={128} />}
+                    {image && <img src={image} width={128} alt="fileicon"/>}
                     {!image && <Typography>Select File</Typography>}
                     <input type="file" hidden onChange={handleFileChange} />
                 </Button>

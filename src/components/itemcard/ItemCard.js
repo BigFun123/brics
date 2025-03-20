@@ -9,7 +9,7 @@ import { FileUpload } from "../fileupload/fileupload";
  * @returns 
  */
 export function ItemCard({ title, onClick, data, priceError, titleError }) {
-    const { Currency, CurrencySymbol, LocalCurrencySymbol } = useContext(APPContext);
+    const { CurrencySymbol } = useContext(APPContext);
     const [file, setFile] = useState(null);
     const [editMode, setEditMode] = useState(false);
 
@@ -43,7 +43,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
     }
 
     return (
-        <Card variant="outlined" sx={{  }}>
+        <Card variant="outlined" sx={{}}>
             <Stack direction={"column"} spacing={2} sx={{ justifyContent: 'space-between' }}>
                 <Typography component="p" variant="h4" gutterBottom>
                     {title}
@@ -70,7 +70,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
                             </Grid2>
 
                         </Grid2>
-                        <Button variant="contained" color="primary" sx={{maxWidth:"200px"}} onClick={doOnClick}>{editMode ? "Update" : "Add"}</Button>
+                        <Button variant="contained" color="primary" sx={{ maxWidth: "200px" }} onClick={doOnClick}>{editMode ? "Update" : "Add"}</Button>
 
 
                         {/* <Stack direction={"row"} sx={{ gap: 2, justifyContent: 'start', alignContent: 'center', alignItems: 'center' }}>
@@ -81,7 +81,7 @@ export function ItemCard({ title, onClick, data, priceError, titleError }) {
                             <Typography>{LocalCurrencySymbol}</Typography>
                             <TextField id="extra" placeholder="extra cost (local currency)" required></TextField>
                         </Stack> */}
-                        
+
                     </Stack>
                 </CardContent>
             </Stack>

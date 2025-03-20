@@ -4,9 +4,9 @@ import { getImageURL } from "../../controllers/user";
 
 
 
-const rows = [
-  { id: 1, title: 'Snow', description: 'Jon', price: 35 }
-]
+// const rows = [
+//   { id: 1, title: 'Snow', description: 'Jon', price: 35 }
+// ]
 
 export function Catalog({ rows, onEdit }) {
 
@@ -19,7 +19,7 @@ export function Catalog({ rows, onEdit }) {
       field: 'image', headerName: 'IMAGE', width: 90, renderCell: (params) => {
         return (
           <div>
-            <img src={getImageURL(params.row.filename)} style={{ width: 50, height: 50 }} />
+            <img src={getImageURL(params.row.filename)} alt="Product" style={{ width: 50, height: 50 }} />
           </div>
         )
       }

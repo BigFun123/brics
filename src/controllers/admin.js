@@ -1,4 +1,3 @@
-import {token} from './config';
 import { reqURL } from './config';
 
 export async function DoGetMembers(page=1) {

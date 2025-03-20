@@ -16,7 +16,6 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { GoogleIcon, FacebookIcon } from './components/CustomIcons';
-import { APPContext } from '../../lib/context';
 import { AppIcon } from '../AppIcon';
 import { usePage } from '../../lib/usePage';
 
@@ -69,7 +68,7 @@ export default function SignUp(props) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');  
-  const { appState, setAppState} = usePage();
+  const { setAppState} = usePage();
 
   const validateInputs = () => {
     const email = document.getElementById('email');

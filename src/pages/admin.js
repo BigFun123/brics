@@ -1,12 +1,11 @@
-import { CssBaseline, Stack, Typography } from "@mui/material";
+import { CssBaseline, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import { DoGetMembers } from "../controllers/admin";
-import App from "../App";
 import AppTheme from "../components/shared-theme/AppTheme";
 import { DataGrid } from "@mui/x-data-grid";
 
 let rows = [
-    
+
 ]
 
 export function Admin(props) {
@@ -31,13 +30,14 @@ export function Admin(props) {
                 console.log(data);
                 rows = [];
 
-                data.map((item, index) => {
+                data.map((item) => {
                     rows.push({
                         id: item.userid,
                         name: item.name,
                         email: item.email,
                         balance: item.balance
                     });
+                    return item;
                 });
 
                 setMembers(rows);
@@ -50,9 +50,8 @@ export function Admin(props) {
         <AppTheme {...props} >
             <CssBaseline enableColorScheme />
             <Stack>
-                <DataGrid rows={members} columns={columns} >                
+                <DataGrid rows={members} columns={columns} >
                 </DataGrid>
-
             </Stack>
         </AppTheme>
     )

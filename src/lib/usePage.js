@@ -12,7 +12,7 @@ export function usePage() {
     const { appState, setAppState } = context;
 
     function isUtilityPage() {
-        return utilityPages.includes(context.appState) == true;
+        return utilityPages.includes(context.appState) === true;
     }
 
     if (!context) {

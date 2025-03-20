@@ -1,28 +1,14 @@
-import { Box, Button, CssBaseline, Grid, Typography } from "@mui/material";
-import { ChoosableCard } from "../components/accountCard/ChoosableCard";
+import { Box, Button, CssBaseline, Typography } from "@mui/material";
 import AppTheme from "../components/shared-theme/AppTheme";
-import TopBar from "../components/topbar/TopBar";
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { APPContext } from "../lib/context";
 import { alpha } from '@mui/material/styles';
-import { ItemCard } from "../components/itemcard/ItemCard";
 import { Catalog } from "../components/catalog/Catalog";
 import { DoBuy, DoGetItems } from "../controllers/user";
 import { Categories } from "../components/categories/Categories";
 
-const LucyData = {
-    title: 'Tap To Select Receiver',
-    value: '0k',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [
-        0, 0,
-    ],
-}
-
 export function Buy(props) {
-    const context = useContext(APPContext);
-    const [theirData, setTheirData] = useState(LucyData);
+    const context = useContext(APPContext);    
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
     const [items, setItems] = useState([]);
@@ -58,19 +44,10 @@ export function Buy(props) {
             });
     }
 
-    function handleBack() {
-        context.setAppState("main");
-    }
-
-    function onDataLoaded(data) {
-        console.log(data);
-        setTheirData(data);
-    }
-
     function onEdit(rowid) {
         console.log(rowid);
         // switch to edit page with row._id
-        context.setAppState("sell", {"id": rowid});
+        context.setAppState("sell", { "id": rowid });
     }
 
     return (

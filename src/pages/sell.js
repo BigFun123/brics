@@ -1,9 +1,8 @@
-import { Box, Button, CssBaseline, Grid, Stack, Typography } from "@mui/material";
-import { Catalog } from "../components/catalog/Catalog";
+import { CssBaseline, Stack, Typography } from "@mui/material";
 import AppTheme from "../components/shared-theme/AppTheme";
 import { ItemCard } from "../components/itemcard/ItemCard";
 import { useContext, useEffect, useState } from "react";
-import { DoGetItem, DoGetItems, DoListItem } from "../controllers/user";
+import { DoGetItem, DoListItem } from "../controllers/user";
 import { alpha } from '@mui/material/styles';
 import { APPContext } from "../lib/context";
 import { Loading } from "../components/loading/Loading";
@@ -34,7 +33,7 @@ export function Sell(props) {
                     setLoading(false);
                 });
         }
-    }, []);
+    }, [data]);
 
     /**
      * Called by the item card when the user clicks the button
